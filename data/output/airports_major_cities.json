@@ -1,0 +1,22 @@
+[
+	{"name": "Milan (All Airports)","code": "MIL","country": "IT","cityname": "Milan","value": "MIL","tokens": ["Milan","MIL","IT"]},
+	{"name": "Rome (All Airports)","code": "ROM","country": "IT","cityname": "Rome","value": "ROM","tokens": ["Rome","ROM","IT"]},
+	{"name": "Paris (All Airports)","code": "PAR","country": "FR","cityname": "Paris","value": "PAR","tokens": ["Paris","PAR","FR"]},
+	{"name": "Barcelona (All Airports)","code": "BCN","country": "ES","cityname": "Barcelona","value": "BCN","tokens": ["Barcellona","BCN","ES"]},
+	{"name": "Brussels (All Airports)","code": "BRU","country": "BE","cityname": "Brussels","value": "BRU","tokens": ["Brussells","BRU","BE"]},
+	{"name": "Berlin (All Airports)","code": "BER","country": "DE","cityname": "Berlin","value": "BER","tokens": ["Berlin","BER","DE"]},
+	{"name": "Frankfurt (All Airports)","code": "FRA","country": "DE","cityname": "Frankfurt","value": "FRA","tokens": ["Frankfurt","FRA","DE"]},
+	{"name": "Warsaw (All Airports)","code": "WAW","country": "PL","cityname": "Warsaw","value": "WAW","tokens": ["Warsaw","WAW","PL"]},
+	{"name": "London (All Airports)","code": "LON","country": "GB","cityname": "London","value": "LON","tokens": ["London","LON","GB"]},
+	{"name": "Moscow (All Airports)","code": "MOW","country": "RU","cityname": "Moscow","value": "MOW","tokens": ["Moscow","MOW","RU"]},
+	{"name": "Kiev (All Airports)","code": "IEV","country": "UA","cityname": "Kiev","value": "IEV","tokens": ["Kiev","IEV","UA"]},
+	{"name": "New York (All Airports)","code": "NYC","country": "US","cityname": "New York","value": "NYC","tokens": ["New York","NYC","US"]},
+	{"name": "Tokyo (All Airports)","code": "TYO","country": "JP","cityname": "Tokyo","value": "TYO","tokens": ["Tokyo","TYO","JP"]},
+	{"name": "Shanghai (All Airports)","code": "SHA","country": "CN","cityname": "Shanghai","value": "SHA","tokens": ["Shanghai","SHA","CN"]},
+	{"name": "Istanbul (All Airports)","code": "IST","country": "TR","cityname": "Istanbul","value": "IST","tokens": ["Istanbul","IST","TR"]},
+	{"name": "Amsterdam (All Airports)","code": "AMS","country": "NL","cityname": "Amsterdam","value": "AMS","tokens": ["Amsterdam","AMS","NL"]},
+	{"name": "Miami (All Airports)","code": "MIA","country": "US","cityname": "Miami","value": "MIA","tokens": ["Miami","MIA","US"]},
+	{"name": "Toronto (All Airports)","code": "YTO","country": "CA","cityname": "Toronto","value": "YTO","tokens": ["Toronto","YTO","CA"]},
+	{"name": "Sao Paulo (All Airports)","code": "SAO","country": "BR","cityname": "Sao Paulo","value": "SAO","tokens": ["San Paolo","SAO","BR"]},
+	{"name": "Mexico City (All Airports)","code": "MEX","country": "MX","cityname": "Mexico City","value": "MEX","tokens": ["Mexico","MEX","MX"]}
+]

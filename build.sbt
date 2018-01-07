@@ -12,13 +12,14 @@ lazy val root = (project in file(".")).
     sparkComponents := Seq("core", "sql", "catalyst", "mllib"),
     parallelExecution in Test := false,
     fork := true,
+    fork in Test := true,
     coverageHighlighting := true,
     javaOptions ++= Seq("-Xms512M", "-Xmx2048M", "-XX:MaxPermSize=2048M", "-XX:+CMSClassUnloadingEnabled"),
     libraryDependencies ++= Seq(
       // Test your code PLEASE!!!
       "org.scalatest" %% "scalatest" % "3.0.1" % "test",
       "org.scalacheck" %% "scalacheck" % "1.13.4" % "test",
-      "com.holdenkarau" %% "spark-testing-base" % "2.2.0_0.7.2" % "test"),
+      "com.holdenkarau" %% "spark-testing-base" % "2.2.0_0.8.0" % "test"),
     scalacOptions ++= Seq("-deprecation", "-unchecked"),
     pomIncludeRepository := { x => false },
     resolvers ++= Seq(

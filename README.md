@@ -1,37 +1,104 @@
-## Welcome to GitHub Pages
+##Output
 
-You can use the [editor on GitHub](https://github.com/alimaken/airports/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+The goal is to create a single `json` file that can be used as the lookup source for `typeahead` (https://twitter.github.io/typeahead.js/) input box on a web page.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+The information will be in the following format:
+```json
+[
+//...
+{"name": "Paris (All Airports)","code": "PAR","country": "FR","cityname": "Paris","value": "PAR","tokens": ["Paris","PAR","FR"]},
+//...
+{"name": "Villacoublay Velizy","code": "VIY","country": "FR","cityname": "Paris","value": "VIY","tokens": ["VIY","PAR","Velizy","Paris","FR","Villacoublay"]}
+//...
+]
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+The following code is an excerpt from an `ASPX` page using `typeahead` in `jQuery`.
+```javascript
+$(function () {
+                // apply typeahead to the text input box with id
+                $('#<%= txtSource.ClientID%>').typeahead({
+                    name: 'airports-all',
+                    // data source
+                    prefetch: 'Globals/airports_complete_cityname.json',
+                    limit: 15,
+                    // template for each suggestion
+                    template: [
+                        '<p class="airport-code">{{code}}</p>',
+                        '<p class="airport-name">{{name}}</p>',
+                        '<p class="airport-city">{{cityname}}</p>',
+                        '<p class="airport-country">{{country}}</p>'
+                    ].join(''),
+                    // template engine
+                    engine: Hogan
+                });
+            }); 
+```
 
-### Jekyll Themes
+The output will be as per the following examples:
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/alimaken/airports/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+* Lookup by name of the city \
+![city_name.png](data/screenshots/city_name.png) \
+![city_name.png](data/screenshots/city_name_2.png) \
+* Lookup by 2 character country code \
+![city_name.png](data/screenshots/country_code.png) \
+* Lookup by any character in any field \
+![city_name.png](data/screenshots/anything.png)
 
-### Support or Contact
+##Input
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+All the input files are taken from TravelPort (https://developer.travelport.com/app/developer-network/resource-centre-uapi).
+You might need to create an account to get access to the `Reference Data Tables` section.
+
+The schema of airports.csv:
+
+```bash
+root
+ |-- Code: string (nullable = true)
+ |-- Synonym: string (nullable = true)
+ |-- Name: string (nullable = true)
+ |-- Country: string (nullable = true)
+ |-- State: string (nullable = true)
+ |-- MetroCode: string (nullable = true)
+ |-- City: string (nullable = true)
+ |-- Type: integer (nullable = true)
+ |-- IsCommercial: string (nullable = true)
+ |-- unknown: integer (nullable = true)
+ ```
+
+The schema of major_cities.csv (Not a part of the Reference Data available on the TravelPort site):
+
+```bash
+root
+ |-- City: string (nullable = true)
+ |-- Code: string (nullable = true)
+ |-- Name: string (nullable = true)
+ |-- Country: string (nullable = true)
+ |-- Airports: string (nullable = true)
+```
+
+The schema of cities.csv:
+
+```bash
+root
+ |-- CityCode: string (nullable = true)
+ |-- Synonym: string (nullable = true)
+ |-- Name: string (nullable = true)
+ |-- Country: string (nullable = true)
+ |-- State: string (nullable = true)
+ |-- MetroCode: string (nullable = true)
+ |-- Airports: string (nullable = true)
+ |-- IsHost: string (nullable = true)
+ |-- IsCommercialService: string (nullable = true)
+```
+
+##PROCESS
+1. Filter `airports` where type is 1, 2 or 3. The types range from 1 to 9, major to minor respectively.
+2. Correlate `cities` to itself based on Synonymous records 
+3. Correlate `airports` to itself based on Synonymous records 
+4. Correlate final `airports` and final `cities` based on City `code`
+5. Write output to a file in the required (`typeahead` template) `JSON` format   
+
+##Related Info
+* How to setup winutils on Windows to create an output file:
+[jaceklaskowski gitbooks link](https://jaceklaskowski.gitbooks.io/mastering-apache-spark/spark-tips-and-tricks-running-spark-windows.html)
